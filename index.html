@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Franco Local</title>
+<style>
+:root{font-family:Inter,system-ui,-apple-system,sans-serif;color:#172033;background:#f3f5f8}
+*{box-sizing:border-box}body{margin:0}.app{max-width:1050px;margin:auto;padding:18px}
+header,.card{background:#fff;border-radius:18px;box-shadow:0 5px 25px #17203312;padding:20px;margin-bottom:15px}
+h1,h2{margin:0 0 8px}.muted{color:#6b7280}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+input,select{width:100%;padding:12px;border:1px solid #d8dee8;border-radius:10px;margin-top:6px}
+button{padding:11px 14px;border:0;border-radius:10px;background:#172033;color:#fff;cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed}
+.secondary{background:#e9edf3;color:#172033}.danger{background:#b42318}.ok{background:#197a45}
+.nav{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}.hidden{display:none}.item{padding:14px;border:1px solid #e4e7ec;border-radius:12px;margin:10px 0}
+.badge{display:inline-block;padding:4px 8px;border-radius:99px;background:#eef1f5;font-size:12px}
+.notice{padding:12px;border-radius:10px;background:#fff6d8;margin:12px 0}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px;border-bottom:1px solid #eee}
+</style>
+</head>
+<body>
+<div class="app">
+<header><h1>📅 Franco Local</h1><div class="muted">Gestión de horarios y solicitudes de franco</div>
+<div class="nav"><button onclick="view('empleado')">👤 Empleados</button><button class="secondary" onclick="view('admin')">🔐 Administrador</button></div></header>
+
+<section id="empleado">
+<div class="card"><h2>Solicitar franco</h2><div id="rule" class="notice"></div>
+<label>Empleado<select id="employee" onchange="renderEmployee()"></select></label>
+<div class="grid"><label>Fecha<input id="francoDate" type="date"></label><label>Motivo (opcional)<input id="reason" placeholder="Ej. trámite personal"></label></div>
+<br><button id="send" onclick="sendRequest()">Enviar solicitud</button></div>
+<div class="card"><h2>Mis horarios</h2><div id="mySchedule"></div></div>
+<div class="card"><h2>Mis solicitudes</h2><div id="myRequests"></div></div>
+</section>
+
+<section id="admin" class="hidden">
+<div id="adminLogin" class="card"><h2>🔐 Acceso de administrador</h2><p class="muted">En la versión online, este acceso debe protegerse con autenticación real.</p><input id="adminPass" type="password" placeholder="Contraseña de administrador"><br><br><button onclick="adminLogin()">Entrar</button></div>
+<div id="adminPanel" class="hidden">
+<div class="card"><h2>👑 Panel del administrador</h2>
+<div class="grid"><label>Nuevo empleado<input id="newName" placeholder="Nombre y apellido"></label></div><br><button onclick="addEmployee()">➕ Agregar empleado</button>
+<div id="people"></div></div>
+<div class="card"><h2>🕐 Cargar horario</h2><div class="grid"><label>Empleado<select id="scheduleEmployee"></select></label><label>Fecha<input id="scheduleDate" type="date"></label><label>Horario<input id="scheduleText" placeholder="09:00 - 17:00 / Franco"></label></div><br><button onclick="saveSchedule()">Guardar horario</button><div id="scheduleList"></div></div>
+<div class="card"><h2>📋 Solicitudes de franco</h2><div id="allRequests"></div></div>
+</div></section>
+</div>
+
+<script>
+/*
+  DEMO FUNCIONAL.
+  Para convertirla en multi-dispositivo real hay que conectar estos datos a una base de datos
+  (Supabase/Firebase) y publicar el proyecto.
+*/
+const KEY="franco_local_demo_v2";
+let db=JSON.parse(localStorage.getItem(KEY)||"null")||{employees:[],schedules:{},requests:[]};
+const ADMIN_PASSWORD="admin-cambiar"; // cambiar antes de publicar
+const $=id=>document.getElementById(id);
+function persist(){localStorage.setItem(KEY,JSON.stringify(db))}
+function esc(x){return String(x).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+function fmt(s){return new Date(s+"T12:00:00").toLocaleDateString("es-AR",{weekday:"short",day:"2-digit",month:"2-digit",year:"numeric"})}
+function weekdayAllowed(){let d=new Date().getDay();return d>=1&&d<=5}
+function view(v){$("empleado").classList.toggle("hidden",v!=="empleado");$("admin").classList.toggle("hidden",v!=="admin");renderEmployee();renderAdmin()}
+function renderEmployee(){
+ $("employee").innerHTML=db.employees.map(x=>`<option>${esc(x)}</option>`).join("")||"<option>Sin empleados cargados</option>";
+ let ok=weekdayAllowed();$("rule").textContent=ok?"✅ Hoy se pueden enviar solicitudes de franco.":"⛔ Sábado y domingo: las solicitudes están cerradas.";
+ $("send").disabled=!ok||!db.employees.length; renderMySchedule();renderMyRequests()
+}
+function renderMySchedule(){
+ let e=$("employee").value;let rows=Object.entries(db.schedules).filter(([k])=>k.startsWith(e+"|")).sort();
+ $("mySchedule").innerHTML=rows.length?rows.map(([k,v])=>`<div class="item"><b>${fmt(k.split("|")[1])}</b><br>${esc(v)}</div>`).join(""):"No hay horarios cargados.";
+}
+function renderMyRequests(){
+ let e=$("employee").value;let rows=db.requests.filter(r=>r.employee===e).sort((a,b)=>a.date.localeCompare(b.date));
+ $("myRequests").innerHTML=rows.length?rows.map(r=>`<div class="item"><b>${fmt(r.date)}</b> — ${esc(r.reason||"Sin motivo")} <span class="badge">${r.status}</span></div>`).join(""):"No hay solicitudes.";
+}
+function sendRequest(){
+ if(!weekdayAllowed())return alert("Las solicitudes solo están habilitadas de lunes a viernes.");
+ let e=$("employee").value,d=$("francoDate").value;if(!e||!d)return alert("Elegí empleado y fecha.");
+ if(db.requests.some(r=>r.employee===e&&r.date===d&&r.status!=="rechazado"))return alert("Ya existe una solicitud para ese día.");
+ db.requests.push({id:Date.now(),employee:e,date:d,reason:$("reason").value.trim(),status:"pendiente"});persist();$("reason").value="";renderMyRequests();alert("Solicitud enviada.");
+}
+function adminLogin(){if($("adminPass").value===ADMIN_PASSWORD){sessionStorage.admin="1";renderAdmin()}else alert("Contraseña incorrecta.")}
+function renderAdmin(){
+ let on=sessionStorage.admin==="1";$("adminLogin").classList.toggle("hidden",on);$("adminPanel").classList.toggle("hidden",!on);if(!on)return;
+ $("people").innerHTML=db.employees.length?db.employees.map((e,i)=>`<div class="item"><b>${esc(e)}</b><div class="actions"><button class="danger" onclick="removeEmployee(${i})">Eliminar</button></div></div>`).join(""):"Todavía no hay empleados.";
+ $("scheduleEmployee").innerHTML=db.employees.map(e=>`<option>${esc(e)}</option>`).join("");
+ renderSchedules();renderRequests();
+}
+function addEmployee(){let n=$("newName").value.trim();if(!n)return alert("Escribí un nombre.");if(db.employees.some(e=>e.toLowerCase()===n.toLowerCase()))return alert("Ese empleado ya existe.");db.employees.push(n);$("newName").value="";persist();renderAdmin();renderEmployee()}
+function removeEmployee(i){let n=db.employees[i];if(confirm("¿Eliminar a "+n+"?")){db.employees.splice(i,1);persist();renderAdmin();renderEmployee()}}
+function saveSchedule(){let e=$("scheduleEmployee").value,d=$("scheduleDate").value,t=$("scheduleText").value.trim();if(!e||!d||!t)return alert("Completá todos los campos.");db.schedules[e+"|"+d]=t;persist();renderSchedules();renderEmployee()}
+function renderSchedules(){let rows=Object.entries(db.schedules).sort();$("scheduleList").innerHTML=rows.length?`<table><tr><th>Empleado</th><th>Fecha</th><th>Horario</th></tr>${rows.map(([k,v])=>{let a=k.split("|");return `<tr><td>${esc(a[0])}</td><td>${fmt(a[1])}</td><td>${esc(v)}</td></tr>`}).join("")}</table>`:"No hay horarios cargados."}
+function renderRequests(){let rows=[...db.requests].sort((a,b)=>a.date.localeCompare(b.date));$("allRequests").innerHTML=rows.length?rows.map(r=>`<div class="item"><b>${esc(r.employee)}</b> — ${fmt(r.date)}<br><span class="muted">${esc(r.reason||"Sin motivo")}</span><br><span class="badge">${r.status}</span>${r.status==="pendiente"?`<div class="actions"><button class="ok" onclick="changeStatus(${r.id},'aprobado')">Aprobar</button><button class="danger" onclick="changeStatus(${r.id},'rechazado')">Rechazar</button></div>`:""}</div>`).join(""):"No hay solicitudes."}
+function changeStatus(id,status){let r=db.requests.find(x=>x.id===id);if(r)r.status=status;persist();renderRequests();renderMyRequests()}
+renderEmployee();renderAdmin();
+</script>
+</body></html>
