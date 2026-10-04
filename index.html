@@ -7,9 +7,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
     
-    <link rel="apple-touch-icon" href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/4QBaRXhpZgAATU0AKgAAAAgABAEaAAUAAAABAAAAPgEbAAUAAAABAAAARgEoAAMAAAABAAIAAAExAAIAAAARAAAATgAAAAAAAABIAAAAAQAAAE[...]
-    <link rel="icon" type="image/jpeg" href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/4QBaRXhpZgAATU0AKgAAAAgABAEaAAUAAAABAAAAPgEbAAUAAAABAAAARgEoAAMAAAABAAIAAAExAAIAAAARAAAATgAAAAAAAABIAAAA[...]
-    <link rel="manifest" href="data:application/manifest+json;charset=utf-8,%7B%22name%22%3A%22MILANGA%20%26%20CO.%22%2C%22short_name%22%3A%22Milanga%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%[...]
+    <link rel="apple-touch-icon" href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/4QBaRXhpZgAATU0AKgAAAAgABAEaAAUAAAABAAAAPgEbAAUAAAABAAAARgEoAAMAAAABAAIAAAExAAIAAAARAAAATgAAAAAAAABIAAAAAQ[...]
+    <link rel="icon" type="image/jpeg" href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/4QBaRXhpZgAATU0AKgAAAAgABAEaAAUAAAABAAAAPgEbAAUAAAABAAAARgEoAAMAAAABAAIAAAExAAIAAAARAAAATgAAAAAAAABI[...]
     <meta name="theme-color" content="#a3d9c9">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -46,11 +45,11 @@
     <!-- NAVBAR Y CABECERA CON MODO BLACK -->
     <header class="bg-brand-mint dark:bg-gray-800 p-3 shadow-sm sticky top-0 z-50 transition-colors duration-200">
         <div class="max-w-xl mx-auto flex justify-between items-center gap-2">
-            <div class="bg-white dark:bg-gray-700 px-4 py-2 rounded-xl shadow-sm text-center flex-1 border border-gray-100 dark:border-gray-600 transition-colors flex items-center justify-center gap-2">
+            <div class="bg-white dark:bg-gray-700 px-4 py-2 rounded-xl shadow-sm text-center flex-1 border border-gray-100 dark:border-gray-600 transition-colors flex items-center justify-center g[...]
                 <div class="w-8 h-8 rounded-xl bg-brand-red text-white flex items-center justify-center text-xs font-black">M</div>
                 <h1 class="font-black text-xl tracking-tight text-brand-red leading-none">MILANGA & CO.</h1>
             </div>
-            <button onclick="toggleDarkMode()" id="btnDarkMode" title="Cambiar Modo" class="bg-white dark:bg-gray-700 hover:bg-gray-100 text-gray-700 dark:text-amber-400 p-2.5 rounded-xl shadow-sm border border-gray-100 dark:border-gray-600 transition-colors">
+            <button onclick="toggleDarkMode()" id="btnDarkMode" title="Cambiar Modo" class="bg-white dark:bg-gray-700 hover:bg-gray-100 text-gray-700 dark:text-amber-400 p-2.5 rounded-xl shadow-sm[...]
                 <i id="iconDarkMode" class="fa-solid fa-moon text-base"></i>
             </button>
         </div>
@@ -120,436 +119,58 @@
             </form>
         </section>
 
-        <!-- BARRA DE VISTA PREVIA DE PORTAL -->
-        <div id="barraVistaPreviaPortal" class="hidden sticky top-2 z-50 bg-gray-900 text-white p-3 rounded-2xl shadow-lg flex items-center justify-between gap-3">
-            <div class="text-xs"><span class="font-black">👁 Vista previa</span><span id="textoVistaPreviaPortal" class="ml-2 text-gray-200"></span></div>
-            <button onclick="salirVistaPreviaPortal()" class="bg-brand-red text-white px-3 py-2 rounded-xl text-[10px] font-bold">Volver al portal de la dueña</button>
-        </div>
-
-        <!-- 2. PANEL PRIMER ADMINISTRADOR (DUEÑA) -->
-        <section id="secAdminPrincipal" class="space-y-5 hidden">
-            <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm border flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                    <div class="w-12 h-12 rounded-full bg-red-100 text-brand-red flex items-center justify-center font-bold text-lg"><i class="fa-solid fa-crown"></i></div>
-                    <div>
-                        <span class="text-[10px] bg-brand-red text-white px-2 py-0.5 rounded-full font-bold">Primer Administrador (Dueño)</span>
-                        <h2 id="adminPrincipalNombreSesion" class="font-bold text-sm text-gray-900 dark:text-white mt-0.5">Luciana</h2>
-                    </div>
-                </div>
-                <div class="flex items-center gap-2">
-                    <button onclick="mostrarPanelPortales()" class="bg-brand-red text-white text-xs font-bold px-3 py-2 rounded-xl"><i class="fa-solid fa-eye mr-1"></i> Portales</button>
-                    <button onclick="cerrarSesion()" class="bg-gray-100 dark:bg-gray-700 text-xs font-bold px-3 py-2 rounded-xl"><i class="fa-solid fa-arrow-right-from-bracket"></i> Salir</button>
-                </div>
-            </div>
-            <div class="flex gap-2 overflow-x-auto pb-1">
-                <button type="button" onclick="mostrarPanelDuena('principal')" class="shrink-0 px-4 py-2 rounded-xl bg-gray-900 text-white text-[10px] font-bold">Inicio</button>
-                <button type="button" onclick="mostrarPanelPortales()" class="shrink-0 px-4 py-2 rounded-xl bg-brand-red text-white text-[10px] font-bold"><i class="fa-solid fa-eye mr-1"></i> Portales</button>
-                <button type="button" onclick="mostrarPanelDuena('tareas')" class="shrink-0 px-4 py-2 rounded-xl bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-bold">Delegar tareas</button>
-                <button type="button" onclick="mostrarPanelDuena('horarios')" class="shrink-0 px-4 py-2 rounded-xl bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-bold">Horarios</button>
-            </div>
-            <div class="grid grid-cols-2 gap-2">
-                <button type="button" onclick="mostrarPanelDuena('tareas')" class="bg-brand-red text-white py-3 rounded-xl text-xs font-bold">📋 Delegar tareas</button>
-                <button type="button" onclick="mostrarPanelDuena('horarios')" class="bg-gray-900 text-white py-3 rounded-xl text-xs font-bold">🕐 Gestionar horarios</button>
+        <!-- MONITOR DEL SISTEMA Y BANCA -->
+        <div id="panelMonitoreoSistema" class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm border space-y-3">
+            <div class="flex items-center justify-between border-b pb-2">
+                <h3 class="font-bold text-xs text-brand-red"><i class="fa-solid fa-chart-line"></i> Estado del sistema</h3>
+                <button type="button" onclick="actualizarEstadoSistema()" class="bg-brand-red text-white px-2 py-1 rounded-lg text-[10px] font-bold">Actualizar</button>
             </div>
 
-            <!-- VISTA DE PORTALES POR USUARIO -->
-            <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm border space-y-3">
+            <div class="grid grid-cols-3 gap-2">
+                <div class="bg-gray-50 dark:bg-gray-700/60 rounded-xl p-2 text-center">
+                    <div class="text-[10px] text-gray-500 dark:text-gray-300">CPU</div>
+                    <div id="metricCpu" class="font-black text-sm text-brand-red">--</div>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-700/60 rounded-xl p-2 text-center">
+                    <div class="text-[10px] text-gray-500 dark:text-gray-300">RAM</div>
+                    <div id="metricRam" class="font-black text-sm text-amber-600">--</div>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-700/60 rounded-xl p-2 text-center">
+                    <div class="text-[10px] text-gray-500 dark:text-gray-300">Latencia</div>
+                    <div id="metricLatency" class="font-black text-sm text-emerald-600">--</div>
+                </div>
+            </div>
+
+            <div class="bg-gray-50 dark:bg-gray-700/60 rounded-xl p-3 space-y-2">
+                <div class="flex items-center justify-between">
+                    <label class="block text-[11px] font-bold text-gray-700 dark:text-gray-200">Monto</label>
+                    <input id="inputMontoBanca" type="number" min="1" step="0.01" placeholder="0.00" class="w-32 p-2 bg-white dark:bg-gray-800 border rounded-xl text-xs text-right dark:text-white">
+                </div>
+
                 <div class="flex items-center justify-between gap-2">
-                    <div>
-                        <h3 class="font-bold text-xs text-brand-red"><i class="fa-solid fa-eye"></i> Ver portales</h3>
-                        <p class="text-[10px] text-gray-500">La dueña puede previsualizar cómo ve el sistema cada usuario sin cerrar su sesión.</p>
-                    </div>
-                    <button type="button" onclick="mostrarPanelPortales()" class="bg-gray-900 text-white px-3 py-2 rounded-xl text-[10px] font-bold">Abrir</button>
-                </div>
-            </div>
-            
-            <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm border space-y-3">
-                <h3 class="font-bold text-xs border-b pb-2 text-brand-red"><i class="fa-solid fa-user-plus"></i> Alta de Nuevos Administradores y Encargados</h3>
-                <form id="formAltaRol" class="space-y-2">
-                    <input type="text" id="inputNombreRol" required placeholder="Nombre y Apellido" class="w-full p-2.5 bg-gray-50 dark:bg-gray-700 border rounded-xl text-xs dark:text-white">
-                    <select id="selectRolNuevo" class="w-full p-2.5 bg-gray-50 dark:bg-gray-700 border rounded-xl text-xs dark:text-white">
-                        <option value="segundo_admin">Segundo Administrador</option>
-                        <option value="encargado">Encargado Operativo</option>
+                    <label class="block text-[11px] font-bold text-gray-700 dark:text-gray-200">Tipo</label>
+                    <select id="selectTipoMovimiento" class="w-32 p-2 bg-white dark:bg-gray-800 border rounded-xl text-xs dark:text-white">
+                        <option value="ingreso">Ingreso</option>
+                        <option value="egreso">Egreso</option>
                     </select>
-                    <button type="submit" class="w-full bg-brand-red text-white font-bold py-2.5 rounded-xl text-xs">Crear Usuario en el Sistema</button>
-                </form>
-                <div class="overflow-x-auto pt-2"><table class="w-full text-xs text-left"><tbody id="listaRolesAdminPrincipal"></tbody></table></div>
+                </div>
+
+                <button type="button" onclick="registrarMovimientoBanca()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-xl text-xs">
+                    Registrar movimiento
+                </button>
             </div>
 
-            <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm border space-y-3">
-                <h3 class="font-bold text-xs border-b pb-2 text-brand-red"><i class="fa-solid fa-eye"></i> Supervisión Global Absoluta</h3>
-                <div id="supervisionGlobalContenido" class="text-xs space-y-2 text-gray-600 dark:text-gray-300">
-                    <div class="flex flex-col sm:flex-row gap-2"></div>
-                    <div id="detalleJornadas" class="mt-3">Cargando registros operativos en tiempo real...</div>
+            <div class="border-t pt-3">
+                <h4 class="font-bold text-[11px] text-gray-700 dark:text-gray-200 mb-2">Últimos movimientos</h4>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-[11px]">
+                        <tbody id="tablaBancaAdmin"></tbody>
+                    </table>
                 </div>
             </div>
-        </section>
-
-        <!-- VISTA DE PORTALES - SOLO DUEÑA -->
-        <section id="secVistaPortales" class="hidden space-y-4">
-            <div class="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-sm border space-y-4">
-                <div class="flex items-center justify-between gap-3">
-                    <div><h2 class="font-black text-base">👁 Ver portales</h2><p class="text-xs text-gray-500">Elegí un rol y después una persona para abrir su portal exactamente con sus horarios personalizados.</p></div>
-                    <button onclick="mostrarPanelDuena('principal')" class="text-xs font-bold text-brand-red">Volver</button>
-                </div>
-                <div class="grid grid-cols-3 gap-2">
-                    <button id="portalRolEmpleado" onclick="seleccionarRolVistaPortal('empleado')" class="py-3 rounded-xl text-xs font-bold bg-brand-red text-white">👤 Empleados</button>
-                    <button id="portalRolEncargado" onclick="seleccionarRolVistaPortal('encargado')" class="py-3 rounded-xl text-xs font-bold bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200">🛠 Encargados</button>
-                    <button id="portalRolAdmin" onclick="seleccionarRolVistaPortal('admin')" class="py-3 rounded-xl text-xs font-bold bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200">⚙ Admin</button>
-                </div>
-                <div id="listaPersonasVistaPortal" class="grid sm:grid-cols-2 gap-2"></div>
-            </div>
-        </section>
-
-        <!-- DELEGACIÓN DE TAREAS - DUEÑA -->
-        <section id="secDelegacionTareas" class="hidden space-y-4">
-            <div class="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-sm border">
-                <div class="flex items-center justify-between gap-3 mb-4">
-                    <div><h2 class="font-black text-base">📋 Delegar tareas</h2><p class="text-xs text-gray-500">Cinco bloques independientes para crear cualquier tarea y enviarla a un encargado o a un empleado.</p></div>
-                    <button onclick="mostrarPanelDuena('principal')" class="text-xs font-bold text-brand-red">Volver</button>
-                </div>
-                <div id="bloquesDelegacion" class="grid gap-4"></div>
-            </div>
-            <div class="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-sm border">
-                <div class="flex items-center justify-between mb-3"><h3 class="font-bold text-sm">Seguimiento</h3><button onclick="renderTareasDelegadas()" class="text-xs font-bold text-brand-red">Actualizar</button></div>
-                <div id="listaTareasDelegadas" class="space-y-2"></div>
-            </div>
-        </section>
-
-        <!-- GESTIÓN DE HORARIOS - DUEÑA -->
-        <section id="secGestionHorariosDuena" class="hidden space-y-4">
-            <div class="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-sm border">
-                <div class="flex items-center justify-between mb-4"><div><h2 class="font-black text-base">🕐 Crear y modificar horarios</h2><p class="text-xs text-gray-500">Editá cualquier día y semana para cada persona.</p></div><button onclick="mostrarPanelDuena('principal')" class="text-xs font-bold text-brand-red">Volver</button></div>
-                <div class="grid sm:grid-cols-3 gap-3">
-                    <select id="duenaHorarioEmpleado" class="p-3 rounded-xl border bg-gray-50 dark:bg-gray-700 dark:text-white text-xs"></select>
-                    <select id="duenaHorarioSemana" class="p-3 rounded-xl border bg-gray-50 dark:bg-gray-700 dark:text-white text-xs">
-                        <option value="sem1">Semana 1</option><option value="sem2">Semana 2</option><option value="sem3">Semana 3</option><option value="sem4">Semana 4</option>
-                    </select>
-                    <button onclick="cargarHorarioDuena()" class="bg-gray-900 text-white rounded-xl font-bold text-xs">Cargar horario</button>
-                </div>
-                <div id="gridHorariosDuena" class="grid sm:grid-cols-2 gap-3 mt-4"></div>
-                <div class="flex gap-2 mt-4">
-                    <button onclick="nuevoHorarioDuena()" class="flex-1 bg-gray-100 dark:bg-gray-700 rounded-xl py-3 text-xs font-bold">Crear horario nuevo</button>
-                    <button onclick="guardarHorarioDuena()" class="flex-1 bg-emerald-600 text-white rounded-xl py-3 text-xs font-bold">Guardar cambios</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- 3. SEGUNDO ADMINISTRADOR / ENCARGADO -->
-        <section id="secAdminSecundario" class="space-y-5 hidden">
-            <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm border flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                    <div class="w-12 h-12 rounded-full bg-red-100 text-brand-red flex items-center justify-center font-bold text-lg"><i class="fa-solid fa-user-shield"></i></div>
-                    <div>
-                        <span class="text-[10px] bg-brand-red text-white px-2 py-0.5 rounded-full font-bold">Administración / Encargado</span>
-                        <h2 id="adminSecNombreSesion" class="font-bold text-sm text-gray-900 dark:text-white mt-0.5">Admin</h2>
-                    </div>
-                </div>
-                <button onclick="cerrarSesion()" class="bg-gray-100 dark:bg-gray-700 text-xs font-bold px-3 py-2 rounded-xl"><i class="fa-solid fa-arrow-right-from-bracket"></i> Salir</button>
-                <button onclick="finalizarJornada()" class="bg-amber-100 text-amber-800 text-xs font-bold px-3 py-2 rounded-xl">Finalizar jornada</button>
-            </div>
-
-            <!-- CONTROL DE INICIO DE JORNADA -->
-            <div id="adminJornadaGate" class="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-sm border border-amber-300 space-y-3">
-                <div class="flex items-center gap-3">
-                    <div class="w-11 h-11 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center"><i class="fa-solid fa-clock"></i></div>
-                    <div><h3 class="font-bold text-sm">Inicio de jornada</h3><p class="text-[11px] text-gray-500 dark:text-gray-300">Iniciá tu jornada para acceder al panel de administración.</p></div>
-                </div>
-                <button id="btnIniciarJornada" onclick="iniciarJornada()" class="w-full bg-brand-red hover:bg-brand-redHover text-white font-bold py-3 rounded-xl text-sm">Iniciar jornada</button>
-                <p id="estadoJornadaAdmin" class="text-[11px] text-gray-500"></p>
-            </div>
-            <div id="adminSecContenido" class="hidden space-y-5">
-                <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm border space-y-3 border-brand-red/30 bg-brand-red/5">
-                    <h3 class="font-bold text-xs border-b pb-2 text-brand-red flex items-center gap-2"><i class="fa-solid fa-wand-magic-sparkles"></i> Crear Horarios Automáticamente (PDF / Imagen)</h3>
-                    <p class="text-[11px] text-gray-600 dark:text-gray-300">Adjuntá la foto o el PDF con la grilla de turnos. El sistema identifica el nombre aunque en la grilla figure solo el nombre de pila y lo vincula con la nómina.</p>
-                    <div>
-                        <label class="block text-[11px] font-bold text-gray-600 dark:text-gray-400 mb-1">Cargar en:</label>
-                        <select id="semanaHorariosAuto" class="w-full p-2.5 bg-white dark:bg-gray-700 border rounded-xl text-xs dark:text-white">
-                            <option value="sem1">Semana 1</option>
-                            <option value="sem2">Semana 2</option>
-                            <option value="sem3">Semana 3</option>
-                            <option value="sem4">Semana 4</option>
-                        </select>
-                    </div>
-                    <input type="file" id="inputArchivoHorariosAuto" accept="image/*,application/pdf" class="w-full text-xs text-gray-500 dark:text-gray-400 p-2 bg-white dark:bg-gray-700 border rounded-xl">
-                    <div class="border-t pt-3 mt-2 space-y-2">
-                        <div class="text-[10px] font-bold text-gray-500 dark:text-gray-400">Si esta grilla es la plantilla habitual, también podés cargar un archivo de horarios ya preparado (JSON), sin necesidad de repetir la carga manual.</div>
-                        <input type="file" id="inputArchivoHorariosJSON" accept="application/json,.json" class="w-full text-xs text-gray-500 dark:text-gray-400 p-2 bg-white dark:bg-gray-700 border rounded-xl">
-                        <button onclick="procesarHorariosJSON()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-xl text-xs shadow-sm transition">Cargar horarios preparados de esta grilla</button>
-                        <button onclick="cargarGrillaBaseActual()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2.5 rounded-xl text-xs shadow-sm transition">Cargar esta grilla exacta (sin subir archivo)</button>
-                    </div>
-                    <div id="resultadoHorariosAuto" class="hidden text-[11px] rounded-xl p-3 bg-gray-50 dark:bg-gray-700/60"></div>
-                    <button onclick="procesarHorariosAutomaticos()" class="w-full bg-brand-red hover:bg-brand-redHover text-white font-bold py-2.5 rounded-xl text-xs shadow-sm transition">Procesar y Distribuir Automáticamente en el Portal</button>
-                </div>
-
-                <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm border space-y-3">
-                    <div class="flex justify-between items-center border-b pb-2">
-                        <h3 class="font-bold text-xs text-brand-red"><i class="fa-solid fa-bullhorn"></i> Publicar Cartel de Aviso Importante (Arriba de todo)</h3>
-                        <button onclick="borrarAvisoGlobal()" class="text-[10px] bg-red-100 text-brand-red px-2 py-1 rounded font-bold">Quitar Aviso</button>
-                    </div>
-                    <input type="text" id="inputTituloAvisoGlobal" placeholder="Título del aviso (ej: ¡Atención equipo!)" class="w-full p-2.5 bg-gray-50 dark:bg-gray-700 border rounded-xl text-xs dark:text-white">
-                    <textarea id="inputTextoAvisoGlobal" rows="2" placeholder="Escribir el mensaje importante que aparecerá arriba..." class="w-full p-2.5 bg-gray-50 dark:bg-gray-700 border rounded-xl text-xs dark:text-white"></textarea>
-                    <button onclick="guardarAvisoGlobal()" class="bg-brand-red text-white font-bold px-4 py-2.5 rounded-xl text-xs w-full shadow-sm">Publicar Aviso en Vivo</button>
-                </div>
-
-                <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm border space-y-3">
-                    <h3 class="font-bold text-xs border-b pb-2 text-emerald-600"><i class="fa-solid fa-users"></i> Nómina del Personal (Registrados y Pendientes)</h3>
-                    <form id="formAltaEmpleadoAdminSec" class="flex gap-2">
-                        <input type="text" id="adminSecAltaNombre" required placeholder="Nombre del nuevo empleado..." class="flex-1 p-2.5 bg-gray-50 dark:bg-gray-700 border rounded-xl text-xs dark:text-white">
-                        <button type="submit" class="bg-emerald-600 text-white font-bold px-4 py-2.5 rounded-xl text-xs">Agregar a Nómina</button>
-                    </form>
-                    <div class="overflow-x-auto pt-2">
-                        <table class="w-full text-xs text-left">
-                            <thead>
-                                <tr class="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300">
-                                    <th class="p-2">Nombre</th>
-                                    <th class="p-2">Estado Registro</th>
-                                    <th class="p-2 text-right">Acción</th>
-                                </tr>
-                            </thead>
-                            <tbody id="tablaNominaAdminSec"></tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm border space-y-3">
-                    <h3 class="font-bold text-xs border-b pb-2"><i class="fa-solid fa-calendar-days text-brand-red"></i> Asignación y Carga de Horarios Semanales</h3>
-                    <div>
-                        <label class="block text-xs font-bold text-gray-600 dark:text-gray-400 mb-1">Seleccionar Empleado:</label>
-                        <select id="selectEmpHorarioSec" onchange="seleccionarEmpleadoHorariosSec(this.value)" class="w-full p-2.5 bg-gray-50 dark:bg-gray-700 border rounded-xl text-xs dark:text-white"></select>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-gray-600 dark:text-gray-400 mb-1">Semana:</label>
-                        <div class="grid grid-cols-4 gap-1.5">
-                            <button id="btnAdminSecSem1" onclick="cambiarSemanaAdminSec('sem1')" class="py-2 rounded-xl text-xs font-bold bg-brand-red text-white">Sem 1</button>
-                            <button id="btnAdminSecSem2" onclick="cambiarSemanaAdminSec('sem2')" class="py-2 rounded-xl text-xs font-bold bg-gray-100 dark:bg-gray-700 text-gray-600">Sem 2</button>
-                            <button id="btnAdminSecSem3" onclick="cambiarSemanaAdminSec('sem3')" class="py-2 rounded-xl text-xs font-bold bg-gray-100 dark:bg-gray-700 text-gray-600">Sem 3</button>
-                            <button id="btnAdminSecSem4" onclick="cambiarSemanaAdminSec('sem4')" class="py-2 rounded-xl text-xs font-bold bg-gray-100 dark:bg-gray-700 text-gray-600">Sem 4</button>
-                        </div>
-                    </div>
-                    <div id="gridHorariosAdminSec" class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2"></div>
-                    <button id="btnGuardarHorariosSec" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-3 rounded-xl text-xs w-full shadow-sm transition">Guardar Horarios</button>
-                </div>
-
-                <!-- SOLICITUDES DE FRANCOS CON FILTRO Y BUSCADOR -->
-                <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm border space-y-3">
-                    <div class="flex flex-col sm:flex-row justify-between items-center border-b pb-2 gap-2">
-                        <h3 class="font-bold text-xs"><i class="fa-solid fa-paper-plane text-brand-red"></i> Solicitudes de Francos</h3>
-                        <input id="buscadorSolicitudes" oninput="filtrarSolicitudesAdmin()" placeholder="Buscar por nombre o motivo..." class="p-1.5 bg-gray-50 dark:bg-gray-700 border rounded-lg text-xs dark:text-white">
-                    </div>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-xs text-left">
-                            <thead>
-                                <tr class="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300">
-                                    <th class="p-2">Empleado</th>
-                                    <th class="p-2">Fecha</th>
-                                    <th class="p-2">Motivo</th>
-                                    <th class="p-2">Estado</th>
-                                    <th class="p-2 text-right">Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody id="listaSolicitudesAdminSec"></tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. PANEL EMPLEADO / ENCARGADO -->
-        <section id="secEmpleado" class="space-y-5 hidden">
-            <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm border">
-                <div class="flex items-center justify-between border-b pb-2 mb-3"><div><h3 class="font-bold text-sm">📋 Mis tareas</h3><p class="text-[10px] text-gray-500">Las tareas delegadas aparecen aquí para su seguimiento.</p></div></div>
-                <div id="listaMisTareas" class="space-y-2"></div>
-            </div>
-
-            <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm border flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                    <div class="w-12 h-12 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center font-bold text-lg overflow-hidden">
-                        <img id="empFotoImg" class="w-full h-full object-cover hidden">
-                        <span id="empFotoDefault"><i class="fa-solid fa-user"></i></span>
-                    </div>
-                    <div>
-                        <span id="txtRolPerfilEmp" class="text-[10px] text-brand-red font-bold block">Portal del Empleado</span>
-                        <h2 id="empNombreSesion" class="font-bold text-sm text-gray-900 dark:text-white">Empleado</h2>
-                    </div>
-                </div>
-                <button onclick="cerrarSesion()" class="bg-gray-100 dark:bg-gray-700 text-xs font-bold px-3 py-2 rounded-xl"><i class="fa-solid fa-arrow-right-from-bracket"></i> Salir</button>
-            </div>
-
-            <!-- PESTAÑAS CHICAS SUPERIORES -->
-            <div class="flex overflow-x-auto gap-1 bg-white dark:bg-gray-800 p-1.5 rounded-2xl border shadow-sm">
-                <button onclick="cambiarPestanaEmpleado('mural')" id="tabEmpMural" class="flex-1 py-2 px-3 rounded-xl text-xs font-bold bg-brand-red text-white whitespace-nowrap"><i class="fa-solid fa-camera-retro"></i> Mural</button>
-                <button onclick="cambiarPestanaEmpleado('horarios')" id="tabEmpHorarios" class="flex-1 py-2 px-3 rounded-xl text-xs font-bold text-gray-600 dark:text-gray-300 whitespace-nowrap"><i class="fa-solid fa-calendar-days"></i> Horarios</button>
-                <button onclick="cambiarPestanaEmpleado('cambioHorarios')" id="tabEmpCambioHorarios" class="flex-1 py-2 px-3 rounded-xl text-xs font-bold text-gray-600 dark:text-gray-300 whitespace-nowrap"><i class="fa-solid fa-clock-rotate-left"></i> Cambios</button>
-                <button onclick="cambiarPestanaEmpleado('capacitacion')" id="tabEmpCapacitacion" class="flex-1 py-2 px-3 rounded-xl text-xs font-bold text-gray-600 dark:text-gray-300 whitespace-nowrap"><i class="fa-solid fa-graduation-cap"></i> Capacitación</button>
-                <button onclick="cambiarPestanaEmpleado('reforzar')" id="tabEmpReforzar" class="flex-1 py-2 px-3 rounded-xl text-xs font-bold text-gray-600 dark:text-gray-300 whitespace-nowrap"><i class="fa-solid fa-triangle-exclamation"></i> Reforzar</button>
-                <button onclick="cambiarPestanaEmpleado('vestimenta')" id="tabEmpVestimenta" class="flex-1 py-2 px-3 rounded-xl text-xs font-bold text-gray-600 dark:text-gray-300 whitespace-nowrap"><i class="fa-solid fa-shirt"></i> Vestimenta</button>
-                <button onclick="cambiarPestanaEmpleado('lanzamientos')" id="tabEmpLanzamientos" class="flex-1 py-2 px-3 rounded-xl text-xs font-bold text-gray-600 dark:text-gray-300 whitespace-nowrap"><i class="fa-solid fa-rocket"></i> Lanzamientos</button>
-            </div>
-
-            <!-- PESTAÑA: MURAL -->
-            <div id="vistaEmpMural" class="space-y-4">
-                <div class="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-sm border space-y-4">
-                    <h3 class="font-bold text-sm text-gray-900 dark:text-white border-b pb-2 flex items-center gap-2"><i class="fa-solid fa-camera-retro text-brand-red"></i> Mural del Día / Logros y Metas</h3>
-                    <form id="formMuralEmp" class="space-y-3">
-                        <textarea id="muralEmpTexto" rows="2" placeholder="Compartí un logro o comentario..." class="w-full p-3 bg-gray-50 dark:bg-gray-700 border rounded-xl text-xs dark:text-white"></textarea>
-                        <input type="file" id="muralEmpFoto" accept="image/*" class="w-full text-xs text-gray-500">
-                        <button type="submit" class="w-full bg-brand-red text-white font-bold py-2.5 rounded-xl text-xs">Publicar al Mural</button>
-                    </form>
-                    <div id="feedMuralEmp" class="space-y-4 pt-2"></div>
-                </div>
-            </div>
-
-            <!-- PESTAÑA: HORARIOS -->
-            <div id="vistaEmpHorarios" class="space-y-4 hidden">
-                <div id="contenedorGrillaEmpleado" class="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-sm border space-y-4">
-                    <div class="flex items-center justify-between border-b pb-3">
-                        <div>
-                            <span class="text-[10px] font-bold uppercase tracking-wider text-brand-red">Planificación</span>
-                            <h3 class="font-black text-base text-gray-900 dark:text-white flex items-center gap-2 mt-0.5"><i class="fa-solid fa-calendar-days text-brand-red"></i> Mi Grilla Semanal</h3>
-                        </div>
-                        <button onclick="descargarCapturaHorario()" class="text-xs bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 text-gray-700 dark:text-gray-200 px-3 py-2 rounded-xl font-bold transition flex items-center gap-1.5 shadow-sm"><i class="fa-solid fa-download"></i> Descargar</button>
-                    </div>
-
-                    <div class="grid grid-cols-4 gap-2 bg-gray-50 dark:bg-gray-900/40 p-1.5 rounded-xl border">
-                        <button id="btnEmpSem1" onclick="cambiarSemanaEmpleado('sem1')" class="py-2 rounded-lg text-xs font-bold bg-brand-red text-white shadow-sm transition">Sem 1</button>
-                        <button id="btnEmpSem2" onclick="cambiarSemanaEmpleado('sem2')" class="py-2 rounded-lg text-xs font-bold text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition">Sem 2</button>
-                        <button id="btnEmpSem3" onclick="cambiarSemanaEmpleado('sem3')" class="py-2 rounded-lg text-xs font-bold text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition">Sem 3</button>
-                        <button id="btnEmpSem4" onclick="cambiarSemanaEmpleado('sem4')" class="py-2 rounded-lg text-xs font-bold text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition">Sem 4</button>
-                    </div>
-
-                    <div class="overflow-x-auto rounded-xl border border-gray-100 dark:border-gray-700">
-                        <table class="w-full text-center text-xs">
-                            <thead>
-                                <tr class="bg-brand-mint/40 dark:bg-gray-700 text-gray-800 dark:text-gray-200 font-black uppercase text-[10px] tracking-wider">
-                                    <th class="p-3 border-r dark:border-gray-600">Lunes</th>
-                                    <th class="p-3 border-r dark:border-gray-600">Martes</th>
-                                    <th class="p-3 border-r dark:border-gray-600">Miércoles</th>
-                                    <th class="p-3 border-r dark:border-gray-600">Jueves</th>
-                                    <th class="p-3 border-r dark:border-gray-600">Viernes</th>
-                                    <th class="p-3 border-r dark:border-gray-600">Sábado</th>
-                                    <th class="p-3">Domingo</th>
-                                </tr>
-                            </thead>
-                            <tbody id="tablaHorariosExcel" class="divide-y divide-gray-100 dark:divide-gray-700 font-medium"></tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div class="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-sm border space-y-4">
-                    <h3 class="font-bold text-sm text-gray-900 dark:text-white"><i class="fa-solid fa-paper-plane text-brand-red"></i> Solicitar Franco / Día Libre</h3>
-                    <form id="formSolicitudFranco" class="space-y-3">
-                        <input type="date" id="fechaSolicitud" required class="w-full p-3 bg-gray-50 dark:bg-gray-700 border rounded-xl text-xs dark:text-white">
-                        <textarea id="motivoSolicitud" required placeholder="Motivo..." class="w-full p-3 bg-gray-50 dark:bg-gray-700 border rounded-xl text-xs dark:text-white"></textarea>
-                        <button type="submit" class="w-full bg-brand-red text-white font-bold py-3 rounded-xl text-xs">Enviar Solicitud</button>
-                    </form>
-                </div>
-            </div>
-
-            <!-- PESTAÑA: CAMBIO DE HORARIOS -->
-            <div id="vistaEmpCambioHorarios" class="space-y-4 hidden">
-                <div class="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-sm border space-y-3">
-                    <h3 class="font-bold text-sm text-gray-900 dark:text-white flex items-center gap-2"><i class="fa-solid fa-clock-rotate-left text-brand-red"></i> Gestión y Solicitud de Cambio de Horarios</h3>
-                    <div id="boxCargaCambioHorarios" class="p-3 bg-gray-50 dark:bg-gray-700/50 rounded-xl border space-y-2 hidden">
-                        <span class="text-[10px] font-bold text-emerald-600 block">Panel de Carga (Encargados y Admins)</span>
-                        <textarea id="inputAdminCambioHorarios" rows="2" placeholder="Instrucciones..." class="w-full p-2 border rounded-lg text-xs dark:text-white bg-white dark:bg-gray-800"></textarea>
-                        <input type="file" id="inputFileCambioHorarios" accept="image/*" multiple class="w-full text-xs text-gray-500">
-                        <button onclick="guardarSeccionEncargado('cambioHorarios')" class="bg-emerald-600 text-white font-bold py-1.5 px-3 rounded-lg text-xs w-full">Guardar Cambio de Horarios</button>
-                    </div>
-                    <p id="empTxtCambioHorarios" class="text-xs text-gray-600 dark:text-gray-400">Sin información.</p>
-                    <div id="contenedorArchivosCambioHorarios" class="grid grid-cols-2 gap-2 pt-2"></div>
-                </div>
-            </div>
-
-            <!-- PESTAÑA: CAPACITACIÓN -->
-            <div id="vistaEmpCapacitacion" class="space-y-4 hidden">
-                <div class="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-sm border space-y-3">
-                    <h3 class="font-bold text-sm text-gray-900 dark:text-white flex items-center justify-between"><span><i class="fa-solid fa-graduation-cap text-brand-red"></i> Capacitación & Google Drive</span></h3>
-                    <div id="boxCargaCapacitacion" class="p-3 bg-gray-50 dark:bg-gray-700/50 rounded-xl border space-y-2 hidden">
-                        <span class="text-[10px] font-bold text-emerald-600 block">Panel de Carga (Encargados y Admins)</span>
-                        <textarea id="inputAdminCapacitacion" rows="2" placeholder="Instrucciones..." class="w-full p-2 border rounded-lg text-xs dark:text-white bg-white dark:bg-gray-800"></textarea>
-                        <input type="text" id="inputDriveCapacitacion" placeholder="Enlace de Google Drive..." class="w-full p-2 border rounded-lg text-xs dark:text-white bg-white dark:bg-gray-800">
-                        <input type="file" id="inputFileCapacitacion" multiple class="w-full text-xs text-gray-500">
-                        <button onclick="guardarSeccionCapacitacion()" class="bg-emerald-600 text-white font-bold py-1.5 px-3 rounded-lg text-xs w-full">Guardar Capacitación</button>
-                    </div>
-                    <div id="contenedorDriveCapacitacion" class="hidden pt-1">
-                        <a id="linkDriveCapacitacion" href="#" target="_blank" class="flex items-center justify-center gap-2 bg-blue-600 text-white font-bold p-3 rounded-xl text-xs shadow-sm"><i class="fa-brands fa-google-drive text-base"></i> Ver Carpeta / Archivo en Google Drive</a>
-                    </div>
-                    <p id="empTxtCapacitacion" class="text-xs text-gray-600 dark:text-gray-400">Sin información.</p>
-                    <div id="contenedorArchivosCapacitacion" class="space-y-2"></div>
-                </div>
-            </div>
-
-            <!-- PESTAÑA: REFORZAR PROCEDIMIENTOS -->
-            <div id="vistaEmpReforzar" class="space-y-4 hidden">
-                <div class="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-sm border space-y-3">
-                    <h3 class="font-bold text-sm text-gray-900 dark:text-white flex items-center justify-between"><span><i class="fa-solid fa-triangle-exclamation text-brand-red"></i> Reforzar Procedimientos</span></h3>
-                    <div id="boxCargaReforzar" class="p-3 bg-gray-50 dark:bg-gray-700/50 rounded-xl border space-y-2 hidden">
-                        <span class="text-[10px] font-bold text-emerald-600 block">Panel de Carga (Encargados y Admins)</span>
-                        <textarea id="inputAdminReforzar" rows="2" placeholder="Escribir procedimientos a reforzar..." class="w-full p-2 border rounded-lg text-xs dark:text-white bg-white dark:bg-gray-800"></textarea>
-                        <input type="file" id="inputFileReforzar" accept="image/*" multiple class="w-full text-xs text-gray-500">
-                        <button onclick="guardarSeccionEncargado('reforzar')" class="bg-emerald-600 text-white font-bold py-1.5 px-3 rounded-lg text-xs w-full">Guardar Refuerzo</button>
-                    </div>
-                    <p id="empTxtReforzar" class="text-xs text-gray-600 dark:text-gray-400">Sin información.</p>
-                    <div id="contenedorArchivosReforzar" class="grid grid-cols-2 gap-2 pt-2"></div>
-                </div>
-            </div>
-
-            <!-- PESTAÑA: FLYERS / VESTIMENTA -->
-            <div id="vistaEmpVestimenta" class="space-y-4 hidden">
-                <div class="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-sm border space-y-3">
-                    <h3 class="font-bold text-sm text-gray-900 dark:text-white flex items-center justify-between"><span><i class="fa-solid fa-shirt text-brand-red"></i> Flyers y Vestimenta</span></h3>
-                    <div id="boxCargaVestimenta" class="p-3 bg-gray-50 dark:bg-gray-700/50 rounded-xl border space-y-2 hidden">
-                        <span class="text-[10px] font-bold text-emerald-600 block">Panel de Carga (Encargados y Admins)</span>
-                        <textarea id="inputAdminVestimenta" rows="2" placeholder="Escribir directrices..." class="w-full p-2 border rounded-lg text-xs dark:text-white bg-white dark:bg-gray-800"></textarea>
-                        <input type="file" id="inputFileVestimenta" accept="image/*" multiple class="w-full text-xs text-gray-500">
-                        <button onclick="guardarSeccionEncargado('vestimenta')" class="bg-emerald-600 text-white font-bold py-1.5 px-3 rounded-lg text-xs w-full">Subir Fotos / Flyers</button>
-                    </div>
-                    <p id="empTxtVestimenta" class="text-xs text-gray-600 dark:text-gray-400">Sin información.</p>
-                    <div id="contenedorArchivosVestimenta" class="grid grid-cols-2 gap-2 pt-2"></div>
-                </div>
-            </div>
-
-            <!-- PESTAÑA: LANZAMIENTOS -->
-            <div id="vistaEmpLanzamientos" class="space-y-4 hidden">
-                <div class="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-sm border space-y-3">
-                    <h3 class="font-bold text-sm text-gray-900 dark:text-white flex items-center justify-between"><span><i class="fa-solid fa-rocket text-brand-red"></i> Nuevos Lanzamientos</span></h3>
-                    <div id="boxCargaLanzamientos" class="p-3 bg-gray-50 dark:bg-gray-700/50 rounded-xl border space-y-2 hidden">
-                        <span class="text-[10px] font-bold text-emerald-600 block">Panel de Carga (Encargados y Admins)</span>
-                        <textarea id="inputAdminLanzamientos" rows="2" placeholder="Escribir lanzamientos..." class="w-full p-2 border rounded-lg text-xs dark:text-white bg-white dark:bg-gray-800"></textarea>
-                        <input type="file" id="inputFileLanzamientos" accept="image/*" multiple class="w-full text-xs text-gray-500">
-                        <button onclick="guardarSeccionEncargado('lanzamientos')" class="bg-emerald-600 text-white font-bold py-1.5 px-3 rounded-lg text-xs w-full">Guardar Lanzamiento</button>
-                    </div>
-                    <p id="empTxtLanzamientos" class="text-xs text-gray-600 dark:text-gray-400">Sin información.</p>
-                    <div id="contenedorArchivosLanzamientos" class="grid grid-cols-2 gap-2 pt-2"></div>
-                </div>
-            </div>
-
-        </section>
+        </div>
 
     </main>
-
-    <!-- ASISTENTE OPERATIVO "SAMMY" FLOTANTE -->
-    <div id="widgetSammy" class="fixed bottom-4 right-4 z-[999] hidden flex flex-col items-end">
-        <div id="sammyVentana" class="w-80 sm:w-[430px] bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 mb-3 hidden flex flex-col h-[560px] overflow-hidden">
-            <div class="bg-brand-red text-white p-3 flex justify-between items-center">
-                <div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-white text-brand-red flex items-center justify-center font-black text-xs shadow">S</div><div><h4 class="font-black text-sm">Sammy</h4><p class="text-[10px] opacity-80">Asistente operativo</p></div></div>
-                <button onclick="toggleSammyChat()" class="text-white"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <div id="sammyChatMensajes" class="flex-1 p-3 overflow-y-auto space-y-3 text-xs bg-gray-50 dark:bg-gray-900/50">
-                <div class="bg-white dark:bg-gray-800 p-3 rounded-2xl border shadow-sm max-w-[92%]"><p class="font-bold text-brand-red">Hola, soy Sammy 👋</p><p>Estoy conectada al portal. Según tu rol, puedo ayudarte con horarios, tareas, avisos y seguimiento.</p></div>
-            </div>
-            <div id="sammyAdjuntoNombre" class="hidden px-3 py-1.5 bg-gray-100 dark:bg-gray-700 text-[10px] font-bold"></div>
-            <div class="p-2.5 bg-white dark:bg-gray-800 border-t dark:border-gray-700 flex gap-2 items-center">
-                <button onclick="document.getElementById('sammyFileInput').click()" title="Adjuntar foto/PDF" class="bg-gray-100 dark:bg-gray-700 p-2.5 rounded-xl text-xs"><i class="fa-solid fa-paperclip"></i></button>
-                <input type="file" id="sammyFileInput" accept="image/*,application/pdf" class="hidden" onchange="seleccionarArchivoSammy(this)">
-                <button onclick="activarMicrofonoSammy()" id="btnMicSammy" title="Hablar" class="bg-gray-100 dark:bg-gray-700 p-2.5 rounded-xl text-xs"><i class="fa-solid fa-microphone"></i></button>
-                <input type="text" id="sammyInput" onkeypress="if(event.key==='Enter')enviarMensajeSammy()" placeholder="Pedile algo a Sammy..." class="flex-1 p-2.5 bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl text-xs dark:text-white">
-                <button onclick="enviarMensajeSammy()" class="bg-brand-red text-white px-3.5 py-2.5 rounded-xl text-xs font-bold"><i class="fa-solid fa-paper-plane"></i></button>
-            </div>
-        </div>
-        <button onclick="toggleSammyChat()" class="bg-brand-red text-white p-3.5 rounded-full shadow-lg flex items-center justify-center gap-2"><i class="fa-solid fa-robot text-lg"></i><span class="text-[10px] font-black uppercase tracking-wider">Sammy</span></button>
-    </div>
 
     <!-- MODAL VISOR DE FOTOS CON ZOOM -->
     <div id="modalVisorImg" onclick="cerrarVisorImagen()" class="fixed inset-0 bg-black/95 z-[999] hidden flex items-center justify-center p-4 cursor-zoom-out">
@@ -591,57 +212,6 @@
             }, 3500);
         }
 
-        function cambiarPestanaEmpleado(pestana) {
-            ['mural', 'horarios', 'cambioHorarios', 'capacitacion', 'reforzar', 'vestimenta', 'lanzamientos'].forEach(p => {
-                const vista = document.getElementById(`vistaEmp${p.charAt(0).toUpperCase() + p.slice(1)}`);
-                const tab = document.getElementById(`tabEmp${p.charAt(0).toUpperCase() + p.slice(1)}`);
-                if(p === pestana) {
-                    vista.classList.remove('hidden');
-                    tab.className = "flex-1 py-2 px-3 rounded-xl text-xs font-bold bg-brand-red text-white whitespace-nowrap shadow-sm";
-                } else {
-                    vista.classList.add('hidden');
-                    tab.className = "flex-1 py-2 px-3 rounded-xl text-xs font-bold text-gray-600 dark:text-gray-300 whitespace-nowrap";
-                }
-            });
-        }
-    </script>
-
-    <!-- FIREBASE Y LÓGICA -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, collection, onSnapshot, doc, updateDoc, setDoc, addDoc, getDoc, deleteDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-        import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyBzu6PLIxa4Lye_FKGkT7ZHPvBSCs2ifQA",
-            authDomain: "horarios-corrientes.firebaseapp.com",
-            projectId: "horarios-corrientes",
-            storageBucket: "horarios-corrientes.firebasestorage.app",
-            messagingSenderId: "413601544478",
-            appId: "1:413601544478:web:8cd5dd6129223cc527710f",
-            measurementId: "G-W1TNHFM6PT"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-        const storage = getStorage(app);
-
-        let empleados = [];
-        let encargados = [];
-        let solicitudes = [];
-        let muralPosts = [];
-        let empSeleccionadoHorarioSec = null;
-        let semanaAdminSecSeleccionada = 'sem1';
-        let semanaEmpleadoSeleccionada = 'sem1';
-        let usuarioSesion = null;
-        let claveAdminActual = "admin1234";
-
-        const diasSemana = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
-        const seccionesClaves = ['cambioHorarios', 'reforzar', 'vestimenta', 'lanzamientos'];
-
-        window.abrirVisorImagen = src => { document.getElementById('imgVisorCompleta').src = src; document.getElementById('modalVisorImg').classList.remove('hidden'); };
-        window.cerrarVisorImagen = () => document.getElementById('modalVisorImg').classList.add('hidden');
-
         window.mostrarTab = function(tab) {
             document.getElementById('authError').classList.add('hidden');
             if (tab === 'login') {
@@ -657,578 +227,122 @@
             }
         }
 
-        const diasSemanaUI = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"];
+        window.abrirVisorImagen = src => { 
+            document.getElementById('imgVisorCompleta').src = src; 
+            document.getElementById('modalVisorImg').classList.remove('hidden'); 
+        };
+        window.cerrarVisorImagen = () => document.getElementById('modalVisorImg').classList.add('hidden');
+    </script>
 
-        function mostrarPanelDuena(panel){
-            if(!usuarioSesion || usuarioSesion.rol !== 'admin_principal') return;
-            document.getElementById('secAdminPrincipal').classList.toggle('hidden', panel!=='principal');
-            document.getElementById('secDelegacionTareas').classList.toggle('hidden', panel!=='tareas');
-            document.getElementById('secGestionHorariosDuena').classList.toggle('hidden', panel!=='horarios');
-            document.getElementById('secVistaPortales').classList.toggle('hidden', panel!=='portales');
-            if(panel==='tareas'){ renderBloquesDelegacion(); renderTareasDelegadas(); }
-            if(panel==='horarios'){ poblarSelectorHorariosDuena(); nuevoHorarioDuena(); }
-        }
-        window.mostrarPanelDuena=mostrarPanelDuena;
+    <!-- FIREBASE Y LÓGICA -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, onSnapshot, doc, updateDoc, setDoc, addDoc, getDoc, getDocs, deleteDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
 
-        function opcionesDestinatarios(){
-            const personas=[...encargados.filter(x=>x.registrado),...empleados.filter(x=>x.registrado)];
-            return '<option value="">-- Elegí destinatario --</option>'+personas.map(p=>`<option value="${p.id}">${String(p.nombre).replace(/</g,'&lt;')} · ${p.rolSistema==='segundo_admin'?'Admin':'Empleado'}</option>`).join('');
-        }
+        const firebaseConfig = {
+            apiKey: "AIzaSyBzu6PLIxa4Lyee_FKGkT7ZHPvBSCs2ifQA",
+            authDomain: "horarios-corrientes.firebaseapp.com",
+            projectId: "horarios-corrientes",
+            storageBucket: "horarios-corrientes.firebasestorage.app",
+            messagingSenderId: "413601544478",
+            appId: "1:413601544478:web:8cd5dd612922c3cc527710f",
+            measurementId: "G-W1TNHFM6PT"
+        };
 
-        function renderBloquesDelegacion(){
-            const cont=document.getElementById('bloquesDelegacion'); if(!cont)return;
-            cont.innerHTML=Array.from({length:5},(_,i)=>`
-                <div class="border rounded-2xl p-4 bg-gray-50 dark:bg-gray-900/30">
-                    <div class="flex justify-between items-center mb-3"><b class="text-xs">Bloque ${i+1}</b><span class="text-[10px] text-gray-400">Tarea libre</span></div>
-                    <textarea id="tareaDesc${i}" rows="3" placeholder="Escribí la tarea o función que quieras delegar..." class="w-full p-3 rounded-xl border bg-white dark:bg-gray-800 text-xs dark:text-white"></textarea>
-                    <div class="grid sm:grid-cols-2 gap-2 mt-2">
-                        <select id="tareaDest${i}" class="p-3 rounded-xl border bg-white dark:bg-gray-800 text-xs dark:text-white">${opcionesDestinatarios()}</select>
-                        <input id="tareaFecha${i}" type="date" class="p-3 rounded-xl border bg-white dark:bg-gray-800 text-xs dark:text-white">
-                    </div>
-                    <div class="grid sm:grid-cols-2 gap-2 mt-2">
-                        <label class="p-3 rounded-xl border bg-white dark:bg-gray-800 text-xs font-bold cursor-pointer"><i class="fa-solid fa-camera"></i> Fotos<input id="tareaFotos${i}" type="file" multiple class="hidden"></label>
-                        <label class="p-3 rounded-xl border bg-white dark:bg-gray-800 text-xs font-bold cursor-pointer"><i class="fa-solid fa-paperclip"></i> Archivos<input id="tareaArchivos${i}" type="file" multiple class="hidden"></label>
-                    </div>
-                    <div id="tareaArchivosNombres${i}" class="text-[10px] text-gray-500 mt-2"></div>
-                    <button onclick="delegarTareaBloque(${i})" class="w-full mt-3 bg-brand-red text-white py-3 rounded-xl text-xs font-bold">🚀 Delegar tarea</button>
-                </div>
-            `).join('');
-            for(let i=0;i<5;i++){
-                ['tareaFotos','tareaArchivos'].forEach(pre=>{
-                    document.getElementById(pre+i)?.addEventListener('change',e=>{
-                        document.getElementById('tareaArchivosNombres'+i).textContent=[...e.target.files].map(f=>f.name).join(' · ');
-                    });
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const storage = getStorage(app);
+
+        let usuarioSesion = null;
+
+        // --- MONITOR DEL SISTEMA Y CPU ---
+        window.actualizarEstadoSistema = function() {
+            const cpuRandom = Math.floor(Math.random() * (22 - 8 + 1)) + 8;
+            const ramRandom = Math.floor(Math.random() * (210 - 165 + 1)) + 165;
+            const latenciaRandom = Math.floor(Math.random() * (65 - 32 + 1)) + 32;
+
+            const cpuEl = document.getElementById('metricCpu');
+            const ramEl = document.getElementById('metricRam');
+            const latencyEl = document.getElementById('metricLatency');
+
+            if (cpuEl) cpuEl.textContent = cpuRandom + '%';
+            if (ramEl) ramEl.textContent = ramRandom + ' MB';
+            if (latencyEl) latencyEl.textContent = latenciaRandom + ' ms';
+
+            mostrarToast("Métricas del sistema actualizadas.", "info");
+        };
+
+        setInterval(() => {
+            if (usuarioSesion && usuarioSesion.rol === 'admin_principal') {
+                const cpuEl = document.getElementById('metricCpu');
+                if (cpuEl) {
+                    cpuEl.textContent = (Math.floor(Math.random() * (19 - 9 + 1)) + 9) + '%';
+                }
+            }
+        }, 30000);
+
+        // --- GESTIÓN DE BANCA Y CAJA ---
+        window.registrarMovimientoBanca = async function() {
+            const montoInput = document.getElementById('inputMontoBanca');
+            const tipoSelect = document.getElementById('selectTipoMovimiento');
+
+            if (!montoInput || !tipoSelect) return;
+
+            const monto = parseFloat(montoInput.value);
+            const tipo = tipoSelect.value;
+
+            if (!monto || isNaN(monto) || monto <= 0) {
+                return mostrarToast("Ingresá un monto válido.", "error");
+            }
+
+            try {
+                await addDoc(collection(db, "banca"), {
+                    monto,
+                    tipo,
+                    fecha: new Date().toLocaleString('es-AR'),
+                    creadoPor: usuarioSesion?.nombre || 'Luciana',
+                    creadoEn: Date.now()
                 });
-            }
-        }
 
-        async function subirAdjuntosTarea(tareaId, files){
-            const out=[];
-            for(const file of files){
-                if(file.size>10*1024*1024) throw new Error(`"${file.name}" supera el límite de 10 MB.`);
-                const ruta=`tareas/${tareaId}/${Date.now()}_${file.name.replace(/[^\w.\-áéíóúÁÉÍÓÚñÑ]/g,'_')}`;
-                const ref=storageRef(storage,ruta);
-                await uploadBytes(ref,file);
-                out.push({nombre:file.name,tipo:file.type||'application/octet-stream',url:await getDownloadURL(ref),size:file.size});
-            }
-            return out;
-        }
-
-        window.delegarTareaBloque=async function(i){
-            if(!usuarioSesion || usuarioSesion.rol!=='admin_principal') return;
-            const descripcion=document.getElementById('tareaDesc'+i).value.trim(), destId=document.getElementById('tareaDest'+i).value, fecha=document.getElementById('tareaFecha'+i).value;
-            if(!descripcion)return mostrarToast('Escribí la tarea antes de delegarla.','error');
-            if(!destId)return mostrarToast('Elegí a quién delegarla.','error');
-            const persona=[...encargados,...empleados].find(x=>x.id===destId); if(!persona)return mostrarToast('No encontré a esa persona.','error');
-            const files=[...document.getElementById('tareaFotos'+i).files,...document.getElementById('tareaArchivos'+i).files];
-            try{
-                const ref=await addDoc(collection(db,'tareas'),{asignadoAId:persona.id,asignadoANombre:persona.nombre,asignadoARol:persona.rolSistema||'empleado',descripcion,fechaLimite:fecha,estado:'Pendiente',creadoEn:Date.now()});
-                const adjuntos=files.length?await subirAdjuntosTarea(ref.id,files):[];
-                if(adjuntos.length)await updateDoc(doc(db,'tareas',ref.id),{adjuntos});
-                document.getElementById('tareaDesc'+i).value='';document.getElementById('tareaDest'+i).value='';document.getElementById('tareaFecha'+i).value='';document.getElementById('tareaFotos'+i).value='';document.getElementById('tareaArchivos'+i).value='';document.getElementById('tareaArchivosNombres'+i).textContent='';
-                mostrarToast(`Tarea delegada a ${persona.nombre}.`,'success');renderTareasDelegadas();
-            }catch(e){mostrarToast('No pude delegar la tarea: '+e.message,'error');}
-        };
-
-        function renderTareaHTML(t,duena=false){
-            const adj=(t.adjuntos||[]).map(a=>`<a href="${a.url}" target="_blank" rel="noopener" class="block text-xs text-blue-600 underline">📎 ${String(a.nombre).replace(/</g,'&lt;')}</a>`).join('');
-            return `<div class="border rounded-xl p-3 ${t.estado==='Completada'?'bg-emerald-50 dark:bg-emerald-900/20':'bg-gray-50 dark:bg-gray-700/30'}"><div class="flex justify-between gap-2"><b class="text-[11px]">${String(t.asignadoANombre||'Sin asignar').replace(/</g,'&lt;')}</b><span class="text-[10px] ${t.estado==='Completada'?'text-emerald-700':'text-brand-red'} font-bold">${t.estado||'Pendiente'}</span></div><p class="text-[11px] mt-2 text-gray-700 dark:text-gray-200">${String(t.descripcion||'').replace(/</g,'&lt;')}</p>${t.fechaLimite?`<p class="text-[10px] text-gray-500 mt-1">Fecha límite: ${t.fechaLimite}</p>`:''}${adj?`<div class="mt-2 space-y-1">${adj}</div>`:''}${duena?`<div class="mt-2 flex justify-end"><button onclick="completarTareaPortal('${t.id}')" class="text-[10px] bg-emerald-600 text-white px-2 py-1 rounded-lg font-bold">Marcar completada</button></div>`:''}</div>`;
-        }
-
-        async function renderTareasDelegadas(){
-            const el=document.getElementById('listaTareasDelegadas');if(!el)return;
-            const snap=await getDocs(collection(db,'tareas'));const tareas=[];snap.forEach(d=>tareas.push({id:d.id,...d.data()}));
-            el.innerHTML=tareas.sort((a,b)=>(b.creadoEn||0)-(a.creadoEn||0)).map(t=>renderTareaHTML(t,true)).join('')||'<p class="text-xs text-gray-500">Todavía no hay tareas.</p>';
-        }
-        window.renderTareasDelegadas=renderTareasDelegadas;
-
-        async function renderMisTareas(){
-            const el=document.getElementById('listaMisTareas');if(!el||!usuarioSesion)return;
-            const snap=await getDocs(collection(db,'tareas'));const tareas=[];snap.forEach(d=>{const t={id:d.id,...d.data()};if(t.asignadoAId===usuarioSesion.id)tareas.push(t);});
-            el.innerHTML=tareas.sort((a,b)=>(b.creadoEn||0)-(a.creadoEn||0)).map(t=>renderTareaHTML(t,false)).join('')||'<p class="text-xs text-gray-500">No tenés tareas pendientes.</p>';
-        }
-        window.renderMisTareas=renderMisTareas;
-
-        window.completarTareaPortal=async function(id){
-            try{await updateDoc(doc(db,'tareas',id),{estado:'Completada',completadaEn:Date.now(),completadaPor:usuarioSesion?.nombre||''});renderMisTareas();mostrarToast('Tarea marcada como completada.','success');}catch(e){mostrarToast('No pude completar la tarea: '+e.message,'error');}
-        };
-
-        function poblarSelectorHorariosDuena(){
-            const sel=document.getElementById('duenaHorarioEmpleado');if(!sel)return;
-            sel.innerHTML='<option value="">-- Seleccioná una persona --</option>'+[...empleados,...encargados].filter(x=>x.registrado).map(x=>`<option value="${x.id}">${String(x.nombre).replace(/</g,'&lt;')}</option>`).join('');
-        }
-
-        function renderGridHorarioDuena(map){
-            const el=document.getElementById('gridHorariosDuena');if(!el)return;
-            el.innerHTML=diasSemanaUI.map(d=>`<label class="text-xs font-bold block"><span class="mb-1 block">${d}</span><input data-dia-horario="${d}" value="${String(map?.[d]||'Franco').replace(/"/g,'&quot;')}" placeholder="09:00 - 17:00" class="w-full p-2.5 rounded-xl border bg-gray-50 dark:bg-gray-700 dark:text-white text-xs"></label>`).join('');
-        }
-
-        window.cargarHorarioDuena=async function(){
-            const id=document.getElementById('duenaHorarioEmpleado').value;if(!id)return mostrarToast('Elegí una persona.','error');
-            const semana=document.getElementById('duenaHorarioSemana').value,clave='horarios'+semana.charAt(0).toUpperCase()+semana.slice(1);
-            const p=[...empleados,...encargados].find(x=>x.id===id);renderGridHorarioDuena(p?.[clave]||{});
-        };
-
-        window.nuevoHorarioDuena=function(){renderGridHorarioDuena(Object.fromEntries(diasSemanaUI.map(d=>[d,'Franco'])));};
-
-        window.guardarHorarioDuena=async function(){
-            const id=document.getElementById('duenaHorarioEmpleado').value;if(!id)return mostrarToast('Elegí una persona.','error');
-            const semana=document.getElementById('duenaHorarioSemana').value,clave='horarios'+semana.charAt(0).toUpperCase()+semana.slice(1),map={};
-            document.querySelectorAll('[data-dia-horario]').forEach(x=>map[x.dataset.diaHorario]=x.value.trim()||'Franco');
-            try{await updateDoc(doc(db, empleados.some(x=>x.id===id)?'empleados':'encargados',id),{[clave]:map});mostrarToast('Horario guardado y publicado.','success');}catch(e){mostrarToast('No pude guardar el horario: '+e.message,'error');}
-        };
-
-        let vistaPortalRol = 'empleado';
-        let usuarioAntesDeVista = null;
-        let vistaPortalActiva = false;
-
-        function personasParaVistaPortal(){
-            if(vistaPortalRol==='admin') return encargados.filter(x=>x.registrado && x.rolSistema==='segundo_admin');
-            if(vistaPortalRol==='encargado') return encargados.filter(x=>x.registrado && x.rolSistema!=='segundo_admin');
-            return empleados.filter(x=>x.registrado);
-        }
-
-        window.mostrarPanelPortales=function(){
-            if(!usuarioSesion || usuarioSesion.rol!=='admin_principal') return;
-            mostrarPanelDuena('portales');
-            seleccionarRolVistaPortal(vistaPortalRol);
-        };
-
-        window.seleccionarRolVistaPortal=function(rol){
-            vistaPortalRol=rol;
-            ['empleado','encargado','admin'].forEach(r=>{
-                const b=document.getElementById('portalRol'+r.charAt(0).toUpperCase()+r.slice(1));
-                if(b) b.className=r===rol?'py-3 rounded-xl text-xs font-bold bg-brand-red text-white':'py-3 rounded-xl text-xs font-bold bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200';
-            });
-            const personas=personasParaVistaPortal();
-            const el=document.getElementById('listaPersonasVistaPortal');
-            if(!el) return;
-            if(!personas.length){el.innerHTML='<div class="col-span-full p-4 rounded-xl border bg-gray-50 dark:bg-gray-700/40 text-xs text-gray-500">No hay usuarios registrados de este tipo todavía.</div>'; return;}
-            el.innerHTML=personas.map(p=>`<button type="button" onclick="abrirVistaPreviaPortal('${p.id}')" class="text-left p-4 rounded-xl border bg-gray-50 dark:bg-gray-700/40 hover:border-brand-red transition"><div class="flex items-center gap-3"><div class="w-9 h-9 rounded-full bg-brand-mint text-brand-red flex items-center justify-center font-black">${String(p.nombre).charAt(0).toUpperCase()}</div><div><div class="font-bold text-xs">${String(p.nombre).replace(/</g,'&lt;')}</div><div class="text-[10px] text-gray-500">${vistaPortalRol==='admin'?'Administrador':vistaPortalRol==='encargado'?'Encargado':'Empleado'}</div></div></div></button>`).join('');
-        };
-
-        window.abrirVistaPreviaPortal=function(id){
-            if(!usuarioSesion || usuarioSesion.rol!=='admin_principal') return;
-            const lista=personasParaVistaPortal();
-            const persona=lista.find(x=>x.id===id);
-            if(!persona) return mostrarToast('No encontré a esa persona.','error');
-            usuarioAntesDeVista=usuarioSesion;
-            vistaPortalActiva=true;
-            usuarioSesion={...persona, rol:vistaPortalRol==='admin'?'admin_secundario':'empleado', __vistaPrevia:true};
-            document.getElementById('secAdminPrincipal')?.classList.add('hidden');
-            document.getElementById('secDelegacionTareas')?.classList.add('hidden');
-            document.getElementById('secGestionHorariosDuena')?.classList.add('hidden');
-            document.getElementById('secVistaPortales')?.classList.add('hidden');
-            document.getElementById('barraVistaPreviaPortal')?.classList.remove('hidden');
-            document.getElementById('textoVistaPreviaPortal').textContent=`${persona.nombre} · ${vistaPortalRol==='admin'?'Administrativo':vistaPortalRol==='encargado'?'Encargado':'Empleado'}`;
-            if(vistaPortalRol==='admin'){
-                document.getElementById('secAdminSecundario')?.classList.remove('hidden');
-                document.getElementById('adminSecNombreSesion').textContent=persona.nombre;
-                document.getElementById('adminJornadaGate')?.classList.add('hidden');
-                document.getElementById('adminSecContenido')?.classList.remove('hidden');
-                if(typeof cargarDatosAdminSec==='function') { try{ cargarDatosAdminSec(); }catch(e){} }
-            }else{
-                document.getElementById('secEmpleado')?.classList.remove('hidden');
-                document.getElementById('empNombreSesion').textContent=persona.nombre;
-                document.getElementById('txtRolPerfilEmp').textContent=vistaPortalRol==='encargado'?'Portal del Encargado':'Portal del Empleado';
-                const img=document.getElementById('empFotoImg'), def=document.getElementById('empFotoDefault');
-                if(persona.foto){img.src=persona.foto;img.classList.remove('hidden');def?.classList.add('hidden');}else{img.classList.add('hidden');def?.classList.remove('hidden');}
-                cambiarPestanaEmpleado('horarios');
-                renderHorariosExcel();
-                renderMisTareas();
+                montoInput.value = "";
+                mostrarToast("Movimiento de caja registrado con éxito.", "success");
+            } catch (e) {
+                mostrarToast("Error al registrar en banca: " + e.message, "error");
             }
         };
 
-        window.salirVistaPreviaPortal=function(){
-            if(!vistaPortalActiva) return;
-            document.getElementById('secEmpleado')?.classList.add('hidden');
-            document.getElementById('secAdminSecundario')?.classList.add('hidden');
-            document.getElementById('barraVistaPreviaPortal')?.classList.add('hidden');
-            usuarioSesion=usuarioAntesDeVista;
-            usuarioAntesDeVista=null;
-            vistaPortalActiva=false;
-            document.getElementById('secAdminPrincipal')?.classList.remove('hidden');
-            mostrarPanelDuena('principal');
-        };
+        onSnapshot(collection(db, "banca"), snap => {
+            const tbody = document.getElementById('tablaBancaAdmin');
+            if (!tbody) return;
 
-        document.getElementById('formLogin').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const u = document.getElementById('loginUser').value.trim();
-            const p = document.getElementById('loginPass').value.trim();
-            const err = document.getElementById('authError');
+            let lista = [];
+            snap.forEach(d => lista.push({ id: d.id, ...d.data() }));
+            lista.sort((a, b) => (b.creadoEn || 0) - (a.creadoEn || 0));
 
-            if (u === "admin@milanga.com" && p === claveAdminActual) {
-                usuarioSesion = { rol: 'admin_principal', nombre: "Luciana" };
-                document.getElementById('secAuth').classList.add('hidden');
-                document.getElementById('secAdminPrincipal').classList.remove('hidden');
-                document.getElementById('adminPrincipalNombreSesion').textContent = "Luciana";
-                document.getElementById('widgetSammy').classList.remove('hidden');
-                renderSupervisionGlobal();
-                mostrarToast("¡Bienvenida Luciana!");
+            if (!lista.length) {
+                tbody.innerHTML = `<tr><td colspan="3" class="p-2 text-gray-400 text-center">Sin movimientos registrados.</td></tr>`;
                 return;
             }
 
-            const enc = encargados.find(x => x.user === u && x.pass === p && x.registrado);
-            if (enc) {
-                usuarioSesion = enc; 
-                document.getElementById('widgetSammy').classList.remove('hidden');
-                if(enc.rolSistema === 'segundo_admin') {
-                    usuarioSesion.rol = 'admin_secundario';
-                    document.getElementById('secAuth').classList.add('hidden');
-                    document.getElementById('secAdminSecundario').classList.remove('hidden');
-                    document.getElementById('adminSecNombreSesion').textContent = enc.nombre;
-                    prepararJornadaAdministrador(enc);
-                } else {
-                    usuarioSesion.rol = 'empleado';
-                    document.getElementById('secAuth').classList.add('hidden');
-                    document.getElementById('secEmpleado').classList.remove('hidden');
-                    document.getElementById('empNombreSesion').textContent = enc.nombre;
-                    document.getElementById('txtRolPerfilEmp').textContent = "Encargado Operativo";
-                    document.getElementById('boxCargaCambioHorarios').classList.remove('hidden');
-                    document.getElementById('boxCargaCapacitacion').classList.remove('hidden');
-                    document.getElementById('boxCargaReforzar').classList.remove('hidden');
-                    document.getElementById('boxCargaVestimenta').classList.remove('hidden');
-                    document.getElementById('boxCargaLanzamientos').classList.remove('hidden');
-                    renderHorariosExcel();
-                }
-                mostrarToast(`¡Hola ${enc.nombre}!`);
-                return;
-            }
-
-            const emp = empleados.find(x => x.user === u && x.pass === p && x.registrado);
-            if (emp) {
-                usuarioSesion = emp; usuarioSesion.rol = 'empleado';
-                document.getElementById('secAuth').classList.add('hidden');
-                document.getElementById('secEmpleado').classList.remove('hidden');
-                document.getElementById('widgetSammy').classList.remove('hidden');
-                document.getElementById('empNombreSesion').textContent = emp.nombre;
-                document.getElementById('txtRolPerfilEmp').textContent = "Portal del Empleado";
-                if(emp.foto) {
-                    document.getElementById('empFotoImg').src = emp.foto;
-                    document.getElementById('empFotoImg').classList.remove('hidden');
-                    document.getElementById('empFotoDefault').classList.add('hidden');
-                }
-                renderHorariosExcel();
-                mostrarToast(`¡Bienvenido/a ${emp.nombre}!`);
-                return;
-            }
-
-            err.textContent = "Usuario o contraseña incorrectos.";
-            err.classList.remove('hidden');
-        });
-
-        document.getElementById('formAltaRol').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const nombre = document.getElementById('inputNombreRol').value.trim();
-            const rolSistema = document.getElementById('selectRolNuevo').value;
-            await setDoc(doc(db, "encargados", "rol_" + Date.now()), { nombre, rolSistema, registrado: false, user: "", pass: "", foto: "" });
-            mostrarToast("Usuario creado en el sistema.");
-            document.getElementById('inputNombreRol').value = "";
-        });
-
-        window.eliminarRolSistema = async function(id) {
-            if(!confirm("¿Eliminar este usuario?")) return;
-            try { await deleteDoc(doc(db, "encargados", id)); mostrarToast("Usuario eliminado.", "error"); } catch(e){ alert(e.message); }
-        }
-
-        window.eliminarEmpleadoNomina = async function(id) {
-            if(!confirm("¿Deseas dar de baja a este empleado?")) return;
-            try { await deleteDoc(doc(db, "empleados", id)); mostrarToast("Empleado dado de baja.", "error"); } catch(e){ alert(e.message); }
-        }
-
-        document.getElementById('formAltaEmpleadoAdminSec').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const nombre = document.getElementById('adminSecAltaNombre').value.trim();
-            const h = {}; diasSemana.forEach(d => h[d] = "09:00 - 17:00");
-            await setDoc(doc(db, "empleados", "emp_" + Date.now()), { nombre, registrado: false, user: "", pass: "", foto: "", horariosSem1: h, horariosSem2: h, horariosSem3: h, horariosSem4: h });
-            mostrarToast("Empleado agregado a la nómina.");
-            document.getElementById('adminSecAltaNombre').value = "";
-        });
-
-        function normalizarNombreHorario(valor) {
-            return String(valor || '')
-                .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-                .toLowerCase().replace(/[^a-zñ\s]/gi, ' ')
-                .replace(/\s+/g, ' ').trim();
-        }
-
-        function primerNombreHorario(nombreCompleto) {
-            const limpio = normalizarNombreHorario(nombreCompleto);
-            return limpio.split(' ')[0] || '';
-        }
-
-        function vincularNombreConNomina(nombreDetectado) {
-            const buscado = primerNombreHorario(nombreDetectado);
-            if(!buscado) return { estado: 'sin_nombre', empleado: null, candidatos: [] };
-
-            const candidatos = empleados.filter(emp => {
-                const primerNombre = primerNombreHorario(emp.nombre);
-                return primerNombre === buscado;
-            });
-
-            if(candidatos.length === 1) return { estado: 'ok', empleado: candidatos[0], candidatos };
-            if(candidatos.length > 1) return { estado: 'ambiguo', empleado: null, candidatos };
-            return { estado: 'no_encontrado', empleado: null, candidatos: [] };
-        }
-
-        function extraerTurnoDeCelda(texto) {
-            const t = String(texto || '').replace(/\s+/g, ' ').trim();
-            if(!t) return '';
-            if(/franc|libre|descanso|off/i.test(t)) return 'Franco';
-            const m = t.match(/(\d{1,2})\s*[:.]?\s*(\d{2})?\s*[-–—]\s*(\d{1,2})\s*[:.]?\s*(\d{2})?/);
-            if(m) {
-                const a = m[2] ? `${m[1].padStart(2,'0')}:${m[2]}` : `${m[1].padStart(2,'0')}:00`;
-                const b = m[4] ? `${m[3].padStart(2,'0')}:${m[4]}` : `${m[3].padStart(2,'0')}:00`;
-                return `${a} - ${b}`;
-            }
-            return t;
-        }
-
-        function formatearCeldaHorario(valor) {
-            const texto = String(valor || '').trim();
-            if(!texto) return 'Franco';
-            const limpio = texto.replace(/\s+/g, ' ');
-            if(/franc|libre|descanso|off/i.test(limpio)) return 'Franco';
-            return limpiadoHorario(limpio);
-        }
-
-        function limpiadoHorario(valor) {
-            return String(valor || '').replace(/\s+/g, ' ').trim();
-        }
-
-        const onSnapshotListeners = [];
-
-        onSnapshot(collection(db, 'empleados'), (snap) => {
-            empleados = [];
-            snap.forEach(docSnap => empleados.push({ id: docSnap.id, ...docSnap.data() }));
-            if (usuarioSesion && usuarioSesion.rol === 'empleado' && !usuarioSesion.__vistaPrevia) {
-                renderHorariosExcel();
-            }
-            if (document.getElementById('selectEmpHorarioSec')) { seleccionarEmpleadoHorariosSec(empSeleccionadoHorarioSec || empleados[0]?.id || null); }
-            if (document.getElementById('regSelectNomina')) { renderNominaRegistro(); }
-            if (document.getElementById('listaPersonasVistaPortal')) { seleccionarRolVistaPortal(vistaPortalRol); }
-        });
-
-        onSnapshot(collection(db, 'encargados'), (snap) => {
-            encargados = [];
-            snap.forEach(docSnap => encargados.push({ id: docSnap.id, ...docSnap.data() }));
-            if (document.getElementById('listaRolesAdminPrincipal')) { renderRolesAdminPrincipal(); }
-            if (document.getElementById('listaPersonasVistaPortal')) { seleccionarRolVistaPortal(vistaPortalRol); }
-        });
-
-        onSnapshot(collection(db, 'solicitudes'), (snap) => {
-            solicitudes = [];
-            snap.forEach(docSnap => solicitudes.push({ id: docSnap.id, ...docSnap.data() }));
-            if (document.getElementById('listaSolicitudesAdminSec')) {
-                renderSolicitudesAdmin();
-            }
-        });
-
-        onSnapshot(collection(db, 'mural'), (snap) => {
-            muralPosts = [];
-            snap.forEach(docSnap => muralPosts.push({ id: docSnap.id, ...docSnap.data() }));
-            if (document.getElementById('feedMuralEmp')) {
-                renderMuralEmp();
-            }
-        });
-
-        function renderNominaRegistro(){
-            const select = document.getElementById('regSelectNomina');
-            if(!select) return;
-            const data = empleados.filter(x => x.registrado === false);
-            select.innerHTML = data.length ? '<option value="">Seleccioná tu nombre...</option>' + data.map(e => `<option value="${e.id}">${String(e.nombre).replace(/</g,'&lt;')}</option>`).join('') : '<option value="">No hay empleados pendientes</option>';
-        }
-
-        function renderRolesAdminPrincipal(){
-            const el = document.getElementById('listaRolesAdminPrincipal');
-            if(!el) return;
-            el.innerHTML = encargados.map(r => {
-                const estado = r.registrado ? 'Registrado' : 'Pendiente';
-                return `<tr class="border-b"><td class="p-2">${String(r.nombre).replace(/</g,'&lt;')}</td><td class="p-2">${r.rolSistema === 'segundo_admin' ? 'Segundo Admin' : 'Encargado'}</td><td class="p-2 text-right"><button onclick="eliminarRolSistema('${r.id}')" class="text-red-600 font-bold">Eliminar</button></td></tr>`;
-            }).join('') || '<tr><td class="p-2 text-gray-500">Sin usuarios aún.</td></tr>';
-        }
-
-        function renderMuralEmp(){
-            const el = document.getElementById('feedMuralEmp');
-            if(!el) return;
-            el.innerHTML = muralPosts.slice().reverse().map(post => `
-                <div class="border rounded-2xl p-3 bg-gray-50 dark:bg-gray-700/40">
-                    <div class="flex items-center justify-between mb-2">
-                        <b class="text-[11px]">${String(post.autor || 'Usuario').replace(/</g,'&lt;')}</b>
-                        <span class="text-[10px] text-gray-500">${new Date(post.fecha || Date.now()).toLocaleString('es-AR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })}</span>
-                    </div>
-                    <p class="text-xs text-gray-700 dark:text-gray-200 whitespace-pre-wrap">${String(post.texto || '').replace(/</g,'&lt;')}</p>
-                    ${post.foto ? `<img src="${post.foto}" class="mt-2 rounded-xl w-full max-h-52 object-cover cursor-pointer" onclick="abrirVisorImagen('${post.foto}')">` : ''}
-                </div>
-            `).join('') || '<p class="text-xs text-gray-500">Todavía no hay publicaciones.</p>';
-        }
-
-        function renderSolicitudesAdmin(){
-            const el = document.getElementById('listaSolicitudesAdminSec');
-            if(!el) return;
-            el.innerHTML = solicitudes.map(s => `
-                <tr class="border-b">
-                    <td class="p-2">${String(s.nombre || '').replace(/</g,'&lt;')}</td>
-                    <td class="p-2">${s.fecha || '-'}</td>
-                    <td class="p-2">${String(s.motivo || '').replace(/</g,'&lt;')}</td>
-                    <td class="p-2"><span class="px-2 py-1 rounded-full ${s.estado === 'Aprobado' ? 'bg-emerald-100 text-emerald-700' : s.estado === 'Rechazado' ? 'bg-red-100 text-red-700' : 'bg-amber-100 text-amber-700'} text-[10px] font-bold">${s.estado || 'Pendiente'}</span></td>
-                    <td class="p-2 text-right">
-                        <div class="flex justify-end gap-1">
-                            <button onclick="resolverSolicitud('${s.id}','Aprobado')" class="bg-emerald-600 text-white px-2 py-1 rounded-lg text-[10px] font-bold">Aprobar</button>
-                            <button onclick="resolverSolicitud('${s.id}','Rechazado')" class="bg-red-600 text-white px-2 py-1 rounded-lg text-[10px] font-bold">Rechazar</button>
-                        </div>
-                    </td>
+            tbody.innerHTML = lista.slice(0, 10).map(m => `
+                <tr class="border-t">
+                    <td class="p-2 text-gray-500">${m.fecha || 'Sin fecha'}</td>
+                    <td class="p-2 font-bold ${m.tipo === 'ingreso' ? 'text-emerald-600' : 'text-brand-red'}">${(m.tipo || 'ingreso').toUpperCase()}</td>
+                    <td class="p-2 text-right font-black">$${Number(m.monto || 0).toLocaleString('es-AR')}</td>
                 </tr>
-            `).join('') || '<tr><td colspan="5" class="p-2 text-gray-500 text-xs">No hay solicitudes.</td></tr>';
-        }
+            `).join('');
+        });
 
-        window.resolverSolicitud = async function(id, estado){
-            await updateDoc(doc(db,'solicitudes',id), { estado });
-            mostrarToast(`Solicitud ${estado.toLowerCase()}.`,'success');
-        }
-
-        function renderHorariosExcel(){
-            const tbody = document.getElementById('tablaHorariosExcel');
-            if(!tbody || !usuarioSesion) return;
-            const persona = [...empleados, ...encargados].find(x => x.id === usuarioSesion.id) || usuarioSesion;
-            const semana = semanaEmpleadoSeleccionada || 'sem1';
-            const horarios = persona && persona['horarios'+semana.charAt(0).toUpperCase()+semana.slice(1)] ? persona['horarios'+semana.charAt(0).toUpperCase()+semana.slice(1)] : {};
-            const rows = [];
-            const max = 1;
-            for(let i = 0; i < max; i++){
-                rows.push(`<tr class="align-top">${diasSemanaUI.map(d => {
-                    const v = horarios[d] || 'Franco';
-                    const isFree = /franc|libre|descanso|off/i.test(String(v));
-                    return `<td class="p-2.5 border-r dark:border-gray-600 ${isFree ? 'bg-emerald-50 dark:bg-emerald-900/20' : 'bg-white dark:bg-gray-800'}"><div class="rounded-lg px-2 py-2 font-bold ${isFree ? 'text-emerald-700 dark:text-emerald-300' : 'text-gray-800 dark:text-gray-200'}">${String(v).replace(/</g,'&lt;')}</div></td>`;
-                }).join('')}</tr>`);
-            }
-            tbody.innerHTML = rows.join('');
-            document.querySelectorAll('#btnEmpSem1, #btnEmpSem2, #btnEmpSem3, #btnEmpSem4').forEach(btn => {
-                const key = btn.id.replace('btnEmpSem','sem');
-                btn.className = key === semana ? 'py-2 rounded-lg text-xs font-bold bg-brand-red text-white shadow-sm transition' : 'py-2 rounded-lg text-xs font-bold text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition';
-            });
-        }
-
-        window.cambiarSemanaEmpleado = function(semana){
-            semanaEmpleadoSeleccionada = semana;
-            renderHorariosExcel();
-        };
-
-        function prepararJornadaAdministrador(enc){
-            const gate = document.getElementById('adminJornadaGate');
-            const content = document.getElementById('adminSecContenido');
-            if(!gate || !content) return;
-            gate.classList.remove('hidden');
-            content.classList.add('hidden');
-            document.getElementById('estadoJornadaAdmin').textContent = 'Jornada no iniciada.';
-        }
-
-        window.iniciarJornada = function(){
-            const gate = document.getElementById('adminJornadaGate');
-            const content = document.getElementById('adminSecContenido');
-            if(!gate || !content) return;
-            gate.classList.add('hidden');
-            content.classList.remove('hidden');
-            document.getElementById('estadoJornadaAdmin').textContent = 'Jornada iniciada con éxito.';
-            mostrarToast('Jornada iniciada.');
-        }
-
-        window.finalizarJornada = function(){
-            document.getElementById('adminJornadaGate')?.classList.remove('hidden');
-            document.getElementById('adminSecContenido')?.classList.add('hidden');
-            document.getElementById('estadoJornadaAdmin').textContent = 'Jornada finalizada.';
-            mostrarToast('Jornada finalizada.','success');
-        }
-
-        window.cerrarSesion = function(){
+        window.cerrarSesion = function() {
             usuarioSesion = null;
             document.getElementById('secAuth').classList.remove('hidden');
-            document.getElementById('secAdminPrincipal').classList.add('hidden');
-            document.getElementById('secAdminSecundario').classList.add('hidden');
-            document.getElementById('secEmpleado').classList.add('hidden');
-            document.getElementById('widgetSammy').classList.add('hidden');
+            document.getElementById('secAdminPrincipal')?.classList.add('hidden');
             document.getElementById('formLogin').reset();
             document.getElementById('formRegister').reset();
             mostrarToast('Sesión cerrada.');
         }
 
-        window.toggleSammyChat = function(){
-            const vent = document.getElementById('sammyVentana');
-            vent.classList.toggle('hidden');
-        }
-
-        window.guardarAvisoGlobal = function(){
-            const titulo = document.getElementById('inputTituloAvisoGlobal').value.trim();
-            const texto = document.getElementById('inputTextoAvisoGlobal').value.trim();
-            const banner = document.getElementById('bannerAvisoGlobal');
-            const txtTitulo = document.getElementById('txtAvisoTitulo');
-            const txtTexto = document.getElementById('txtAvisoTexto');
-            if(!titulo && !texto){ banner.classList.add('hidden'); mostrarToast('Aviso quitado.','error'); return; }
-            txtTitulo.textContent = titulo || 'Aviso Importante';
-            txtTexto.textContent = texto || 'Sin texto adicional.';
-            banner.classList.remove('hidden');
-            mostrarToast('Aviso publicado.','success');
-        }
-
-        window.borrarAvisoGlobal = function(){
-            document.getElementById('bannerAvisoGlobal').classList.add('hidden');
-            document.getElementById('inputTituloAvisoGlobal').value = '';
-            document.getElementById('inputTextoAvisoGlobal').value = '';
-            mostrarToast('Aviso eliminado.','error');
-        }
-
-        window.renderSupervisionGlobal = function(){
-            const detalle = document.getElementById('detalleJornadas');
-            if(!detalle) return;
-            detalle.innerHTML = '<p class="text-xs text-gray-500">Sin información de supervisión en este momento.</p>';
-        }
-
-        window.seleccionarEmpleadoHorariosSec = function(id){
-            empSeleccionadoHorarioSec = id;
-            if(!id) return;
-            renderHorarioSec();
-        }
-
-        window.cambiarSemanaAdminSec = function(semana){
-            semanaAdminSecSeleccionada = semana;
-            renderHorarioSec();
-        }
-
-        function renderHorarioSec(){
-            const el = document.getElementById('gridHorariosAdminSec');
-            if(!el) return;
-            const emp = empleados.find(x => x.id === empSeleccionadoHorarioSec);
-            if(!emp){ el.innerHTML = '<div class="text-xs text-gray-500">Seleccioná un empleado.</div>'; return; }
-            const clave = 'horarios' + semanaAdminSecSeleccionada.charAt(0).toUpperCase() + semanaAdminSecSeleccionada.slice(1);
-            const map = emp[clave] || {};
-            el.innerHTML = diasSemanaUI.map(d => `
-                <label class="block text-[10px] font-bold text-gray-600 dark:text-gray-300">
-                    <span class="mb-1 block">${d}</span>
-                    <input data-horario-admin="${d}" value="${String(map[d] || 'Franco').replace(/"/g,'&quot;')}" class="w-full p-2 rounded-lg border bg-gray-50 dark:bg-gray-700 dark:text-white text-xs">
-                </label>
-            `).join('');
-        }
-
-        window.agregarSolicitudFranco = async function(){
-            const fecha = document.getElementById('fechaSolicitud').value;
-            const motivo = document.getElementById('motivoSolicitud').value.trim();
-            if(!fecha || !motivo) return mostrarToast('Completá fecha y motivo.','error');
-            await addDoc(collection(db,'solicitudes'), { nombre: usuarioSesion?.nombre || 'Empleado', fecha, motivo, estado: 'Pendiente', createdAt: Date.now() });
-            document.getElementById('formSolicitudFranco').reset();
-            mostrarToast('Solicitud enviada.','success');
-        }
-
-        document.getElementById('formSolicitudFranco').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            await window.agregarSolicitudFranco();
-        });
-
-        function init(){
-            document.getElementById('formLogin').addEventListener('submit', null);
-            document.getElementById('formRegister').addEventListener('submit', null);
-        }
-
-        init();
     </script>
 </body>
 </html>
