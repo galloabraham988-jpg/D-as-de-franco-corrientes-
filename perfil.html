@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mi Perfil</title>
+
+<style>
+body{
+    font-family:Arial,sans-serif;
+    background:#f5f5f5;
+    padding:20px;
+}
+
+.perfil-card{
+    max-width:400px;
+    margin:auto;
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 2px 10px rgba(0,0,0,.1);
+    text-align:center;
+}
+
+button{
+    background:#c62828;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+button:hover{
+    opacity:.9;
+}
+</style>
+
+</head>
+<body>
+
+<div class="perfil-card">
+    <h3>Mi Perfil</h3>
+
+    <img id="previewFoto"
+         src="https://via.placeholder.com/150"
+         width="150"
+         height="150"
+         style="border-radius:50%;object-fit:cover;">
+
+    <br><br>
+
+    <input type="file"
+           id="fotoPerfil"
+           accept="image/*">
+
+    <br><br>
+
+    <button onclick="guardarFoto()">
+        Guardar Foto
+    </button>
+</div>
+
+<script>
+function guardarFoto() {
+
+    const archivo =
+        document.getElementById('fotoPerfil').files[0];
+
+    if(!archivo){
+        alert("Seleccione una imagen");
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function(e){
+
+        document.getElementById("previewFoto")
+            .src = e.target.result;
+
+        localStorage.setItem(
+            "fotoPerfilUsuario",
+            e.target.result
+        );
+
+        alert("Foto actualizada");
+    };
+
+    reader.readAsDataURL(archivo);
+}
+
+window.onload = () => {
+
+    const foto =
+        localStorage.getItem(
+            "fotoPerfilUsuario"
+        );
+
+    if(foto){
+        document.getElementById(
+            "previewFoto"
+        ).src = foto;
+    }
+}
+</script>
+
+</body>
+</html>
